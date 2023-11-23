@@ -4,6 +4,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import dotenv from "dotenv";
+import session from "express-session";
 
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
@@ -20,6 +21,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('./public'));
 
+// use session
+app.use(session({
+  secret: '2434ed03929f238943aff87380791a63d56f05b5f33e63068fe8029e874315989b6fc7afe2642a8770d0272f1192be8b354bce010fad8aac8df1204e80901c15',
+  resave: true,
+  saveUninitialized: true
+}))
+
+// use dotenv config
 dotenv.config()
 
 app.use('/', indexRouter);

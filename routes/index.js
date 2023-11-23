@@ -7,10 +7,15 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', async function(req, res, next) {
   let indexTemplate = await fs.readFile('./views/index.mustache').then(data => data.toString())
-  mustache.parse(indexTemplate)
+  let headerTemplate = await fs.readFile('./views/template/headerTemplate.mustache').then(data => data.toString())
+  let footerTemplate = await fs.readFile('./views/template/footerTemplate.mustache').then(data => data.toString())
+
 
   let webview = mustache.render(indexTemplate, {
-    title: 'Express'
+    title: 'Expressjs'
+  }, {
+    header: headerTemplate,
+    footer: footerTemplate
   })
 
   res.send(webview)
