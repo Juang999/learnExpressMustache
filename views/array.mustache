@@ -1,0 +1,16 @@
+{{> header}}
+
+<ul>
+{{#array}}
+    <li>{{.}}</li>
+{{/array}}
+</ul>
+<br>
+{{#sayHi}}
+    <p>Hello {{hello}}</p>
+{{/sayHi}}
+{{^sayHi}}
+    <p>Hello guest</p>
+{{/sayHi}}
+
+{{> footer}}
